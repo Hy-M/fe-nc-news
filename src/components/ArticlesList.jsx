@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import * as api from '../utils/api';
 import * as utils from '../utils/utils';
+import Loader from './Loader';
 
 class ArticlesList extends Component {
     state = {
-        articles: []
+        articles: [],
+        isLoading: true
     }
 
     getArticles = () => {
         api.fetchArticles(this.props.topic)
         .then(({ articles }) => {
             let formattedArticles = utils.formatDates(articles);
-            this.setState({ articles: formattedArticles });
+            this.setState({ articles: formattedArticles, isLoading: false });
         })
     }
 
@@ -26,7 +28,10 @@ class ArticlesList extends Component {
     }
     
     render() {
-        const { articles } = this.state;
+        const { articles, isLoading } = this.state;
+       if (isLoading) {
+           return <Loader />
+       } else {
         return (
             <main className='articlesList'>
                 { !this.props.topic ? <h4>Viewing all articles</h4> : <h4>Viewing {this.props.topic} articles</h4>  }
@@ -42,6 +47,7 @@ class ArticlesList extends Component {
                 })}
             </main>
         );
+       }
     }
 }
 

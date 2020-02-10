@@ -15,9 +15,11 @@
 }
 
 .App {
+  width: 90%;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 10vh 5vh 75vh 10vh;
+  grid-template-rows: 10vh 5vh auto 10vh;
   grid-row-gap: 0.5rem;
 }
 
@@ -27,6 +29,22 @@
 
 .footer {
   border: 2px solid rgb(22, 172, 192);
+}
+
+
+.articlesList--article {
+  margin: 1.2rem 0;
+  border-bottom: 1px solid rgb(85, 199, 41);
+}
+
+.articlesList--article-title {
+  font-weight: 500;
+  padding: 0.2rem 0;
+}
+
+.articlesList--article-info {
+  padding: 0.2rem 0;
+  font-size: 0.9rem;
 }
 
 

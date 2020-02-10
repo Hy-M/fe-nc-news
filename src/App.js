@@ -18,6 +18,7 @@ class App extends Component {
        <Nav />
        <Router>
          <ArticlesList path='/'/>
+         <ArticlesList path='/:topic'/>
        </Router>
        <Footer />
       </div>

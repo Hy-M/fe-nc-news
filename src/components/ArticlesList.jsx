@@ -7,30 +7,36 @@ class ArticlesList extends Component {
         articles: []
     }
 
+    getArticles = () => {
+        api.fetchArticles(this.props.topic)
+        .then(({ articles }) => {
+            let formattedArticles = utils.formatDates(articles);
+            this.setState({ articles: formattedArticles });
+        })
+    }
+
     componentDidMount() {
         this.getArticles();
     }
 
-    getArticles = () => {
-        api.fetchArticles()
-        .then(({ articles }) => {
-            this.setState({ articles }, () => {
-                console.log(articles);
-            });
-        })
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.topic !== this.props.topic) {
+            this.getArticles()
+        }
     }
     
     render() {
         const { articles } = this.state;
         return (
             <main className='articlesList'>
+                { !this.props.topic ? <h4>Viewing all articles</h4> : <h4>Viewing {this.props.topic} articles</h4>  }
                 {articles.map((article) => {
                     return (
-                        <article>
-                        <h4>{article.title}</h4>
-                        <p>Topic: {article.topic}</p>
-                        <p>By: {article.author}</p>
-                        <p>On: {article.created_at}</p>
+                        <article className="articlesList--article" key={article.article_id}>
+                        <p className="articlesList--article-title">{article.title}</p>
+                        <p className="articlesList--article-info">Written by: {article.author}</p>
+                        <p className="articlesList--article-info">On: {article.created_at}</p>
+                        <p className="articlesList--article-info">Topic: {article.topic}</p>
                         </article>
                     )
                 })}

@@ -18,10 +18,7 @@ class SingleArticle extends Component {
         api.fetchSingleArticle(this.props.article_id) 
         .then(({ article }) => {
             let formattedArticles = utils.formatDates([article]);
-            this.setState({ article: formattedArticles[0], isLoading: false }, () => {
-                console.log(this.state.article);
-                
-            })
+            this.setState({ article: formattedArticles[0], isLoading: false })
         })
     }
     

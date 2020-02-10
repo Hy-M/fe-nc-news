@@ -6,6 +6,7 @@ import Loader from './Loader';
 class Comments extends Component {
     state = {
         comments: [],
+        commentCount: 0,
         isLoading: true
     }
 
@@ -17,19 +18,19 @@ class Comments extends Component {
         api.fetchAllComments(this.props.article_id)
         .then(({ comments }) => {
             let formattedArticles = utils.formatDates(comments);
-            this.setState({ comments: formattedArticles, isLoading: false }, () => console.log(this.state.comments)
-            );
+            let commentCount = formattedArticles.length;
+            this.setState({ comments: formattedArticles, isLoading: false, commentCount });
         })
     }
 
     render() {
-        const { comments, isLoading } = this.state;
+        const { comments, isLoading, commentCount } = this.state;
         if (isLoading) {
             return <Loader />
         } else {
             return (
                 <section className="commentsList">
-                    <p className="commentsList--header">Comments:</p>
+        <p className="commentsList--header">{commentCount} comments:</p>
                     {comments.map((comment) => {
                         return (
                             <div className="commentsList--comment" key={comment.comment_id}>

@@ -23,3 +23,11 @@ exports.fetchSingleArticle = (article_id) => {
         return data;
     })
 }
+
+exports.fetchAllComments = (article_id) => {
+    return axios
+    .get(`https://nc-news-hym.herokuapp.com/api/articles/${article_id}/comments`)
+    .then(({ data }) => {
+        return data;
+    })
+}

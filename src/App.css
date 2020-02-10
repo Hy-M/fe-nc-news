@@ -32,7 +32,8 @@
 }
 
 
-.articlesList--article {
+.articlesList--article,
+.commentsList--comment {
   margin: 1.2rem 0;
   border-bottom: 1px solid rgb(85, 199, 41);
 }
@@ -45,14 +46,22 @@
 }
 
 .articlesList--article-info,
-.singleArticle--info {
+.singleArticle--info,
+.commentsList--info {
   font-size: 0.9rem;
   margin: 0.7rem 0;
 }
 
-.singleArticle--body {
+.singleArticle--body,
+.commentsList--body {
   margin: 1.5rem 0;
   line-height: 1.7rem;
 }
+
+.commentsList--header {
+  font-weight: 500;
+  color: greenyellow;
+}
+
 
 

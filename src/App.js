@@ -4,6 +4,7 @@ import './App.css';
 import Title from './components/Title';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
+import ArticlesList from './components/ArticlesList';
 
 class App extends Component {
   state = {
@@ -16,7 +17,7 @@ class App extends Component {
        <Title user={this.state.user} /> 
        <Nav />
        <Router>
-         
+         <ArticlesList path='/'/>
        </Router>
        <Footer />
       </div>

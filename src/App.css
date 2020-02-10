@@ -4,10 +4,29 @@
   box-sizing: border-box;
 }
 
+.header {
+  border: 2px solid rgb(231, 16, 80);
+}
+
 .nav {
   display: flex;
   justify-content: space-around;
+  border: 2px solid rgb(235, 149, 10);
 }
 
+.App {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 10vh 5vh 75vh 10vh;
+  grid-row-gap: 0.5rem;
+}
+
+.articlesList {
+  border: 2px solid rgb(41, 121, 10);
+}
+
+.footer {
+  border: 2px solid rgb(22, 172, 192);
+}
 
 

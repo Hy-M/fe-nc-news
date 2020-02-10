@@ -15,3 +15,11 @@ exports.fetchArticles = (topic) => {
         return data;
     })
 }
+
+exports.fetchSingleArticle = (article_id) => {
+    return axios
+    .get(`https://nc-news-hym.herokuapp.com/api/articles/${article_id}`)
+    .then(({ data }) => {
+        return data;
+    })
+}

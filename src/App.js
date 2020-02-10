@@ -5,6 +5,7 @@ import Title from './components/Title';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
 import ArticlesList from './components/ArticlesList';
+import SingleArticle from './components/SingleArticle';
 
 class App extends Component {
   state = {
@@ -19,6 +20,7 @@ class App extends Component {
        <Router>
          <ArticlesList path='/'/>
          <ArticlesList path='/:topic'/>
+         <SingleArticle path='/articles/:article_id' />
        </Router>
        <Footer />
       </div>

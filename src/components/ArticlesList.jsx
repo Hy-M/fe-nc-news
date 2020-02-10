@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as api from '../utils/api';
 import * as utils from '../utils/utils';
 import Loader from './Loader';
+import { Link } from '@reach/router';
 
 class ArticlesList extends Component {
     state = {
@@ -38,7 +39,7 @@ class ArticlesList extends Component {
                 {articles.map((article) => {
                     return (
                         <article className="articlesList--article" key={article.article_id}>
-                        <p className="articlesList--article-title">{article.title}</p>
+                        <Link to={`/articles/${article.article_id}`}><p className="articlesList--article-title">{article.title}</p></Link>
                         <p className="articlesList--article-info">Written by: {article.author}</p>
                         <p className="articlesList--article-info">On: {article.created_at}</p>
                         <p className="articlesList--article-info">Topic: {article.topic}</p>

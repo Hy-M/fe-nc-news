@@ -26,15 +26,16 @@ class Voter extends Component {
         } else {
             inc_votes.inc_votes = -1;
         }
+
+        if (this.props.article_id) {
+            api.patchVotes('articles', this.props.article_id, inc_votes);
+        } else {
+            api.patchVotes('comments', this.props.comment_id, inc_votes);
+        }
         
-        api.patchVotes(this.props.article_id, inc_votes);
         this.setState((currentState) => {
             return { optimisticVote: currentState.optimisticVote + inc_votes.inc_votes}
-        }, () => {
-            console.log(this.state);
-            
         })
-        
     }
 
     render() {

@@ -53,7 +53,8 @@
 
 .articlesList--article-info,
 .singleArticle--info,
-.commentsList--info {
+.commentsList--info,
+.voter--info {
   font-size: 0.9rem;
   margin: 0.7rem 0;
 }

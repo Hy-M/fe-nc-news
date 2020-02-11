@@ -52,9 +52,9 @@ exports.deleteComment = (comment_id) => {
     })
 }
 
-exports.patchVotes = (article_id, inc_votes) => {
+exports.patchVotes = (endpoint, id, inc_votes) => {
     return axios
-    .patch(`https://nc-news-hym.herokuapp.com/api/articles/${article_id}`, inc_votes)
+    .patch(`https://nc-news-hym.herokuapp.com/api/${endpoint}/${id}`, inc_votes)
     .then(({ data }) => {
         return data;
     })

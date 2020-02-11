@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as api from '../utils/api';
 import * as utils from '../utils/utils';
 import Loader from './Loader';
+import Voter from './Voter';
 
 class Comments extends Component {
     state = {
@@ -73,6 +74,8 @@ class Comments extends Component {
                             <div className="commentsList--comment" key={comment.comment_id}>
                             <p className="commentsList--info">{comment.author} said on {comment.created_at}:</p>
                             <p className="commentsList--body">{comment.body}</p>
+                            {/* <p className="commentsList--info">Votes: {comment.votes}</p> */}
+                            <Voter comment_id={comment.comment_id} votes={comment.votes}/>
                             {comment.author === this.props.user && <button id={comment.comment_id}className="commentsList--trashBtn" onClick={this.handleDeleteClick}><i className="fas fa-trash"></i></button>}
                             </div>
                         )

@@ -3,6 +3,7 @@ import * as utils from '../utils/utils';
 import * as api from '../utils/api';
 import Loader from './Loader';
 import Comments from './Comments';
+import Voter from './Voter';
 
 class SingleArticle extends Component {
     state = {
@@ -34,8 +35,8 @@ class SingleArticle extends Component {
                     <p className="singleArticle--info">Written by: {article.author}</p>
                     <p className="singleArticle--info">On: {article.created_at}</p>
                     <p className="singleArticle--body">{article.body}</p>
-                    <p className="singleArticle--info">Votes: {article.votes}</p>
                 </article>
+                    <Voter article_id={this.props.article_id} votes={article.votes}/>
                     <Comments article_id={this.props.article_id} user={this.props.user}/>
                 </main>
             );

@@ -8,9 +8,13 @@ exports.fetchAllTopics = () => {
     })
 }
 
-exports.fetchArticles = (topic) => {
+exports.fetchArticles = (topic, sort_by) => {
     return axios
-    .get('https://nc-news-hym.herokuapp.com/api/articles', { params: { topic }})
+    .get('https://nc-news-hym.herokuapp.com/api/articles', 
+    { params: {
+        topic,
+        sort_by
+    }})
     .then(({ data }) => {
         return data;
     })

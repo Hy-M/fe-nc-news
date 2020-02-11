@@ -7,24 +7,30 @@ import { Link } from '@reach/router';
 class ArticlesList extends Component {
     state = {
         articles: [],
-        isLoading: true
+        isLoading: true,
+        sort_by: ''
     }
 
-    getArticles = () => {
-        api.fetchArticles(this.props.topic)
+    getArticles = (sort_by) => {
+        api.fetchArticles(this.props.topic, sort_by)
         .then(({ articles }) => {
             let formattedArticles = utils.formatDates(articles);
             this.setState({ articles: formattedArticles, isLoading: false });
         })
     }
 
+    handleOptionChange = (changeEvent) => {
+        let selectedValue = changeEvent.target.value;
+        this.getArticles(selectedValue);
+    }
+
     componentDidMount() {
-        this.getArticles();
+        this.getArticles(null);
     }
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.topic !== this.props.topic) {
-            this.getArticles()
+            this.getArticles(null)
         }
     }
     
@@ -36,6 +42,12 @@ class ArticlesList extends Component {
         return (
             <main className='articlesList'>
                 { !this.props.topic ? <h4>Viewing all articles</h4> : <h4>Viewing {this.props.topic} articles</h4>  }
+                <p className='articlesList--article-info'>Sort articles by: </p>
+                <select className='articlesList--sortBy' name="sortBy" id="sortBy" onChange={this.handleOptionChange}>
+                    <option value="created_at">Most recent</option>
+                    <option value="comment_count">Most comments</option>
+                    <option value="votes">Most votes</option>
+                </select>
                 {articles.map((article) => {
                     return (
                         <article className="articlesList--article" key={article.article_id}>

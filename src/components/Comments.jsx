@@ -7,13 +7,10 @@ class Comments extends Component {
     state = {
         comments: [],
         commentCount: 0,
-        isLoading: true
+        isLoading: true,
+        commentInput: '',
     }
 
-    componentDidMount() {
-        this.getAllComments();
-    }
-    
     getAllComments = () => {
         api.fetchAllComments(this.props.article_id)
         .then(({ comments }) => {
@@ -23,6 +20,33 @@ class Comments extends Component {
         })
     }
 
+    handleCommentChange = (changeEvent) => {
+        let commentInput = changeEvent.target.value;
+        this.setState({ commentInput });
+    }
+
+    handleCommentSubmit = (submitEvent) => {
+        submitEvent.preventDefault();
+        this.addComment();
+    }
+
+    addComment = () => {
+        let commentObj = {
+            username: this.props.user,
+            body: this.state.commentInput
+        };
+        api.postComment(this.props.article_id, commentObj)
+        .then(({ comment }) => {
+            this.setState((currentState) => {
+                return {comments: [ comment, ...currentState.comments], commentInput: ''}
+            })
+        })
+    }
+
+    componentDidMount() {
+        this.getAllComments();
+    }
+
     render() {
         const { comments, isLoading, commentCount } = this.state;
         if (isLoading) {
@@ -30,7 +54,7 @@ class Comments extends Component {
         } else {
             return (
                 <section className="commentsList">
-        <p className="commentsList--header">{commentCount} comments:</p>
+                    <p className="commentsList--header">{commentCount} comments:</p>
                     {comments.map((comment) => {
                         return (
                             <div className="commentsList--comment" key={comment.comment_id}>
@@ -39,6 +63,13 @@ class Comments extends Component {
                             </div>
                         )
                     })}
+                    <form className="commentsList--postComment" onSubmit={this.handleCommentSubmit}>
+                        <label>
+                            <p className='commentsList--info'>{this.props.user} said:</p>
+                            <input type='text' placeholder='Type your comment here' required onChange={this.handleCommentChange} value={this.state.commentInput} />
+                        </label>
+                        <button className="commentsList--btn">Post</button>
+                    </form>
                 </section>
             );
         }

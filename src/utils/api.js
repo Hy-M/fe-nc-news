@@ -35,3 +35,11 @@ exports.fetchAllComments = (article_id) => {
         return data;
     })
 }
+
+exports.postComment = (article_id, commentObj) => {
+    return axios
+    .post(`https://nc-news-hym.herokuapp.com/api/articles/${article_id}/comments`, commentObj)
+    .then(({ data }) => {
+        return data;
+    })
+}

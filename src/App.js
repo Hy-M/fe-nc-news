@@ -20,7 +20,7 @@ class App extends Component {
        <Router>
          <ArticlesList path='/'/>
          <ArticlesList path='/:topic'/>
-         <SingleArticle path='/articles/:article_id' />
+         <SingleArticle path='/articles/:article_id' user={this.state.user}/>
        </Router>
        <Footer />
       </div>

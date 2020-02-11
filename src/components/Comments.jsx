@@ -30,6 +30,19 @@ class Comments extends Component {
         this.addComment();
     }
 
+    removeComment = (comment_id) => {
+        api.deleteComment(comment_id)
+        .then(() => {
+            this.getAllComments()
+        })
+    }
+
+    handleDeleteClick = (clickEvent) => {
+        clickEvent.preventDefault();
+        let deletedCommentId = clickEvent.target.parentElement.id;
+        this.removeComment(deletedCommentId)
+    }
+
     addComment = () => {
         let commentObj = {
             username: this.props.user,
@@ -60,6 +73,7 @@ class Comments extends Component {
                             <div className="commentsList--comment" key={comment.comment_id}>
                             <p className="commentsList--info">{comment.author} said on {comment.created_at}:</p>
                             <p className="commentsList--body">{comment.body}</p>
+                            {comment.author === this.props.user && <button id={comment.comment_id}className="commentsList--trashBtn" onClick={this.handleDeleteClick}><i className="fas fa-trash"></i></button>}
                             </div>
                         )
                     })}
@@ -68,7 +82,7 @@ class Comments extends Component {
                             <p className='commentsList--info'>{this.props.user} said:</p>
                             <input type='text' placeholder='Type your comment here' required onChange={this.handleCommentChange} value={this.state.commentInput} />
                         </label>
-                        <button className="commentsList--btn">Post</button>
+                        <button className="commentsList--submitBtn">Post</button>
                     </form>
                 </section>
             );

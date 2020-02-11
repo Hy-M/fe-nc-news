@@ -69,6 +69,10 @@
   color: greenyellow;
 }
 
+.fa-trash {
+  font-size: 1rem;
+}
+
 .footer {
   border: 2px solid rgb(22, 172, 192);
 }

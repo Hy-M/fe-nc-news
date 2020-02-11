@@ -43,3 +43,11 @@ exports.postComment = (article_id, commentObj) => {
         return data;
     })
 }
+
+exports.deleteComment = (comment_id) => {
+    return axios
+    .delete(`https://nc-news-hym.herokuapp.com/api/comments/${comment_id}`)
+    .then(() => {
+        console.log("deleted");
+    })
+}

@@ -18,7 +18,10 @@ class SingleArticle extends Component {
         api.fetchSingleArticle(this.props.article_id) 
         .then(({ article }) => {
             let formattedArticles = utils.formatDates([article]);
-            this.setState({ article: formattedArticles[0], isLoading: false })
+            this.setState({ article: formattedArticles[0], isLoading: false }, () => {
+                console.log(this.state.article);
+                
+            })
         })
     }
     
@@ -34,6 +37,7 @@ class SingleArticle extends Component {
                     <p className="singleArticle--info">Written by: {article.author}</p>
                     <p className="singleArticle--info">On: {article.created_at}</p>
                     <p className="singleArticle--body">{article.body}</p>
+                    <p className="singleArticle--info">Votes: {article.votes}</p>
                 </article>
                     <Comments article_id={this.props.article_id}/>
                 </main>

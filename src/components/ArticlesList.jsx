@@ -56,6 +56,7 @@ class ArticlesList extends Component {
                         <p className="articlesList--article-info">On: {article.created_at}</p>
                         <p className="articlesList--article-info">Topic: {article.topic}</p>
                         <p className="articlesList--article-info">Votes: {article.votes}</p>
+                        <p className="articlesList--article-info">Comments: {article.comment_count}</p>
                         </article>
                     )
                 })}

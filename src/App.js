@@ -6,6 +6,7 @@ import Nav from './components/Nav';
 import Footer from './components/Footer';
 import ArticlesList from './components/ArticlesList';
 import SingleArticle from './components/SingleArticle';
+import ErrorPage from './components/ErrorPage';
 
 class App extends Component {
   state = {
@@ -13,6 +14,7 @@ class App extends Component {
   }
 
   render() {
+    const { error } = this.state;
     return (
       <div className="App">
        <Title user={this.state.user} /> 

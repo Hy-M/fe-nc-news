@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import * as api from '../utils/api';
-import { render } from '@testing-library/react';
 
 class Err extends Component {
     state = {

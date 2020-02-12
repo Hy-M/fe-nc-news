@@ -69,13 +69,6 @@ class Comments extends Component {
             return (
                 <section className="commentsList">
                     <p className="commentsList--title">Comments: {commentCount}</p>
-                    {comments.map((comment) => {
-                        return (
-                            <div className="commentsList--comment" key={comment.comment_id}>
-                            <CommentCard comment={comment} user={this.props.user} handleDeleteClick={this.handleDeleteClick}/>
-                            </div>
-                        )
-                    })}
                     <form className="commentsList--postComment" onSubmit={this.handleCommentSubmit}>
                         <label>
                             <p className='commentsList--comment-title'>{this.props.user} said:</p>
@@ -83,6 +76,13 @@ class Comments extends Component {
                         </label>
                         <button className="commentsList--comment-submitBtn">Post</button>
                     </form>
+                    {comments.map((comment) => {
+                        return (
+                            <div className="commentsList--comment" key={comment.comment_id}>
+                            <CommentCard comment={comment} user={this.props.user} handleDeleteClick={this.handleDeleteClick}/>
+                            </div>
+                        )
+                    })}
                 </section>
             );
         }

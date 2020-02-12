@@ -11,7 +11,8 @@ class Voter extends Component {
 
     handleVoteClick = (clickEvent) => {
         clickEvent.preventDefault();
-        let userVote = clickEvent.target.parentElement.id || clickEvent.target.id;        
+        let userVote = clickEvent.target.parentElement.id || clickEvent.target.id;   console.log(userVote);
+             
         this.setState({ userVote, btnHasBeenClicked: true}, () => {
             this.updateVotes()
         })

@@ -19,17 +19,19 @@ body {
   font-family: 'Rubik', sans-serif;
 }
 
+.loading--title {
+  color: var(--dark-grey-color);
+  text-transform: uppercase;
+  text-align: center;
+}
+
 .App {
   width: 90%;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 13vh 9vh auto 10vh;
-  grid-row-gap: 0.5rem;
-}
-
-.header {
-  border: 2px solid rgb(231, 16, 80);
+  grid-template-rows: 13vh 6vh auto 10vh;
+  grid-row-gap: 1.5rem;
 }
 
 .header--logo {
@@ -41,14 +43,15 @@ body {
   color: var(--dark-grey-color);
   display: inline;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
 }
 
 .header--username {
-  margin: 0.7rem 0 0 0;
+  margin: 1rem 0 0 0;
   text-align: center;
   color: var(--dark-grey-color);
   letter-spacing: 1px;
+  font-size: 0.8rem;
 }
 
 .fa-user-alt {
@@ -60,8 +63,9 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin: 0.2rem 0;
-  border: 2px solid rgb(235, 149, 10);
+  align-content: center;
+  border-bottom: 1px solid var(--light-grey-color);
+  border-top: 1px solid var(--light-grey-color);
 }
 
 .nav--link {
@@ -75,11 +79,8 @@ body {
   color: var(--nc-color);
 }
 
-.articlesList {
-  border: 2px solid rgb(41, 121, 10);
-}
-
 .articlesList--nav {
+  margin: 0 0 3rem 0;
   display: grid;
   grid-template-columns: auto auto;
   grid-template-rows: auto auto;

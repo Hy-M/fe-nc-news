@@ -4,9 +4,9 @@ const Title = ({ user }) => {
     return (
             <div>
                 <header className="header">
-                    <h1 className="header--title">NC News</h1>
-                    {/* <img className="header--logo" src='https://pbs.twimg.com/media/Dc6Z6GbWkAELnoS.png' alt="NC logo"></img> */}
-                    <p className="header--username">{user} is logged in!</p>
+                    <img className="header--logo" src='https://pbs.twimg.com/media/Dc6Z6GbWkAELnoS.png' alt="NC logo"></img>
+                    <h1 className="header--title">News</h1>
+                    <p className="header--username"><i className="fas fa-user-alt"></i>{user}</p>
                 </header>
             </div>
     );

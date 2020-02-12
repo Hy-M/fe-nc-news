@@ -42,7 +42,7 @@ class Voter extends Component {
         const { optimisticVote, btnHasBeenClicked } = this.state;
         return (
             <section className="voter">
-                <p className="voter--info">Votes: {optimisticVote}</p>
+                <p className="voter--title">Votes: {optimisticVote}</p>
                 <button className={btnHasBeenClicked ? "voter--btn-inactive voter--btn" : "voter--btn"} id="upvote" onClick={this.handleVoteClick}><i className="far fa-thumbs-up"></i></button>
                 <button className={btnHasBeenClicked ? "voter--btn-inactive voter--btn" : "voter--btn"} id="downvote" onClick={this.handleVoteClick}><i className="far fa-thumbs-down"></i></button>
             </section>

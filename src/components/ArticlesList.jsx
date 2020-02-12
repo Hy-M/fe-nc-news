@@ -41,17 +41,19 @@ class ArticlesList extends Component {
        } else {
         return (
             <main className='articlesList'>
-                { !this.props.topic ? <h4>Viewing all articles</h4> : <h4>Viewing {this.props.topic} articles</h4>  }
-                <p className='articlesList--article-info'>Sort articles by: </p>
+                <section className="articlesList--nav">
+                { !this.props.topic ? <h4 className="articlesList--title">Viewing all articles</h4> : <h4 className="articlesList--title">Viewing {this.props.topic} articles</h4>  }
+                <p className='articlesList--sortTitle'>Sort articles by: </p>
                 <select className='articlesList--sortBy' name="sortBy" id="sortBy" onChange={this.handleOptionChange}>
                     <option value="created_at">Most recent</option>
                     <option value="comment_count">Most comments</option>
                     <option value="votes">Most votes</option>
                 </select>
+                </section>
                 {articles.map((article) => {
                     return (
                         <article className="articlesList--article" key={article.article_id}>
-                        <Link to={`/articles/${article.article_id}`}><p className="articlesList--article-title">{article.title}</p></Link>
+                        <Link className="link" to={`/articles/${article.article_id}`}><p className="articlesList--article-title">{article.title}</p></Link>
                         <p className="articlesList--article-info">Written by: {article.author}</p>
                         <p className="articlesList--article-info">On: {article.created_at}</p>
                         <p className="articlesList--article-info">Topic: {article.topic}</p>

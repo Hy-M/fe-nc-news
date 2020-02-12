@@ -10,7 +10,6 @@ class Err extends Component {
     componentDidMount() {
         this.getHTTPCat();
     }
-    
 
     getHTTPCat = () => {
         let errStatus = this.props.errStatus;
@@ -24,7 +23,6 @@ class Err extends Component {
             })
         }
     }
-
 
     render() {
         const { catURL } = this.state;

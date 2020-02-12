@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import * as api from '../utils/api';
 import * as utils from '../utils/utils';
 import Loader from './Loader';
-import Voter from './Voter';
+import CommentCard from './CommentCard';
 
 class Comments extends Component {
     state = {
@@ -72,10 +72,7 @@ class Comments extends Component {
                     {comments.map((comment) => {
                         return (
                             <div className="commentsList--comment" key={comment.comment_id}>
-                            <p className="commentsList--comment-title">{comment.author} said on {comment.created_at}:</p>
-                            <p className="commentsList--comment-body">{comment.body}</p>
-                            <Voter comment_id={comment.comment_id} votes={comment.votes}/>
-                            {comment.author === this.props.user && <button id={comment.comment_id}className="commentsList--comment-trashBtn" onClick={this.handleDeleteClick}><i className="fas fa-trash"></i></button>}
+                            <CommentCard comment={comment} user={this.props.user} handleDeleteClick={this.handleDeleteClick}/>
                             </div>
                         )
                     })}

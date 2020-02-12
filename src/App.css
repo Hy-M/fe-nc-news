@@ -30,7 +30,7 @@ body {
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 13vh 6vh auto 10vh;
+  grid-template-rows: auto auto auto auto;
   grid-row-gap: 1.5rem;
 }
 
@@ -180,7 +180,7 @@ body {
 }
 
 .commentsList--comment-trashBtn {
-  margin: 1rem 0 0 0;
+  margin: 1rem 0;
 }
 
 .fa-trash {
@@ -236,8 +236,81 @@ body {
 }
 
 @media (min-width: 768px) {
-  .header {
-    
+  .header--logo {
+    height: 100px;
+  }
+
+  .header--title {
+    font-size: 40px;
+  }
+
+  .header--username {
+    font-size: 0.9rem;
+  }
+
+  .nav {
+    padding: 10px 0;
+  }
+
+  .nav--link {
+    font-size: 1rem;
+  }
+
+  .articlesList--title {
+    font-size: 1.1rem;
+  }
+
+  .articlesList--sortTitle {
+    font-size: 1rem;
+  }
+
+  .articlesList--article-title,
+  .singleArticle--title {
+    font-size: 1.1rem;
+    line-height: 1.8rem;
+    letter-spacing: 1.5px;
+  }
+
+  .voter--title,
+  .commentsList--title {
+    font-size: 1rem;
+  }
+
+  .voter--btn {
+    padding: 10px;
+  }
+
+  .commentsList--comment-title {
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+  .singleArticle--body,
+  .commentsList--comment-body {
+    font-size: 1.1rem;
+    line-height: 1.9rem;
+  }
+
+  .fa-trash,
+  .fa-thumbs-down,
+  .fa-thumbs-up {
+    font-size: 1.1rem;
+  }
+
+  .commentsList--comment-input {
+    padding: 10px;
+    font-size: 1.1rem;
+  }
+
+  .commentsList--comment-trashBtn,
+  .commentsList--comment-submitBtn {
+    padding: 10px;
+    font-size: 1rem;
+  }
+
+  .articlesList--article-info,
+  .singleArticle--info {
+    font-size: 1rem;
   }
 }
 

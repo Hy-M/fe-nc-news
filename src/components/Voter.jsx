@@ -4,15 +4,12 @@ import * as api from '../utils/api';
 class Voter extends Component {
     state = {
         optimisticVote: this.props.votes,
-        userVote: '',
+        userVote: 0,
         btnHasBeenClicked: false,
         err: false
     }
 
-    handleVoteClick = (clickEvent) => {
-        clickEvent.preventDefault();
-        let userVote = clickEvent.target.parentElement.id || clickEvent.target.id;   console.log(userVote);
-             
+    handleVoteClick = (userVote) => {             
         this.setState({ userVote, btnHasBeenClicked: true}, () => {
             this.updateVotes()
         })
@@ -20,13 +17,7 @@ class Voter extends Component {
 
     updateVotes = () => {
         let inc_votes = {
-            inc_votes: 0
-        }
-
-        if (this.state.userVote === "upvote") {
-            inc_votes.inc_votes = 1;
-        } else {
-            inc_votes.inc_votes = -1;
+            inc_votes: this.state.userVote
         }
 
         if (this.props.article_id) {
@@ -49,8 +40,14 @@ class Voter extends Component {
         return (
             <section className="voter">
                 <p className="voter--title">Votes: {optimisticVote}</p>
-                <button className={btnHasBeenClicked ? "voter--btn-inactive voter--btn" : "voter--btn"} id="upvote" onClick={this.handleVoteClick}><i className="far fa-thumbs-up"></i></button>
-                <button className={btnHasBeenClicked ? "voter--btn-inactive voter--btn" : "voter--btn"} id="downvote" onClick={this.handleVoteClick}><i className="far fa-thumbs-down"></i></button>
+                <button className={btnHasBeenClicked ? "voter--btn-inactive voter--btn" : "voter--btn"} id="upvote" onClick={((clickEvent) => {
+                    clickEvent.preventDefault();
+                    this.handleVoteClick(1)
+                })}><i className="far fa-thumbs-up"></i></button>
+                <button className={btnHasBeenClicked ? "voter--btn-inactive voter--btn" : "voter--btn"} id="downvote" onClick={((clickEvent) => {
+                    clickEvent.preventDefault();
+                    this.handleVoteClick(-1)
+                })}><i className="far fa-thumbs-down"></i></button>
                 { btnHasBeenClicked && err && <p className="voter--errorMsg">Sorry, votes cannot be added right now.</p>}    
             </section>
         );

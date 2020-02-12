@@ -51,8 +51,10 @@ class Comments extends Component {
         };
         api.postComment(this.props.article_id, commentObj)
         .then(({ comment }) => {
+            let formattedComment = utils.formatDates([comment]);
+            let commentCount = formattedComment.length;
             this.setState((currentState) => {
-                return {comments: [ comment, ...currentState.comments], commentInput: ''}
+                return {comments: [ formattedComment[0], ...currentState.comments], commentInput: '', commentCount }
             })
         })
     }

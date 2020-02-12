@@ -235,7 +235,7 @@ body {
   font-size: 0.9rem;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 768px) and (max-width: 1024px) {
   .header--logo {
     height: 100px;
   }
@@ -300,6 +300,7 @@ body {
   .commentsList--comment-input {
     padding: 10px;
     font-size: 1.1rem;
+    letter-spacing: 1.5px;
   }
 
   .commentsList--comment-trashBtn,
@@ -312,6 +313,131 @@ body {
   .singleArticle--info {
     font-size: 1rem;
   }
+}
+
+@media (min-width: 1024px) {
+  .App {
+    grid-row-gap: 2rem;
+  }
+
+  .header--logo {
+    height: 150px;
+  }
+
+  .header--title {
+    font-size: 60px;
+    letter-spacing: 2px;
+  }
+
+  .header--username {
+    font-size: 1rem;
+  }
+
+  .fa-user-alt {
+    margin: 0 1rem;
+  }
+
+  .nav {
+    justify-content: space-evenly;
+    padding: 15px 0;
+  }
+
+  .nav--link {
+    font-size: 1.1rem;
+  }
+
+  .articlesList {
+    width: 75%;
+    margin: 0 auto;
+  }
+
+  .articlesList--nav {
+    margin: 1rem 0 4rem 0;
+  }
+
+  .articlesList--title {
+    font-size: 1.3rem;
+    letter-spacing: 1.6px;
+    margin-bottom: 2rem;
+  }
+
+  .articlesList--sortTitle {
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+  }
+
+  .articlesList--article-title,
+  .singleArticle--title {
+    font-size: 1.3rem;
+    letter-spacing: 1.6px;
+  }
+
+  .voter--title,
+  .commentsList--title {
+    font-size: 1.1rem;
+    letter-spacing: 1.5px;
+  }
+
+  .voter-btn {
+    padding: 15px;
+  }
+
+  .commentsList {
+    width: 60%;
+    margin: 4rem auto;
+    border: none;
+  }
+
+  .commentsList--title {
+    margin: 2rem 0;
+  }
+
+  .commentsList--comment-title {
+    font-size: 1.1rem;
+    letter-spacing: 1.5px;
+    padding: 15px;
+  }
+
+  .singleArticle--body,
+  .commentsList--comment-body {
+    font-size: 1.2rem;
+    letter-spacing: 1.6px;
+    line-height: 2rem;
+  }
+
+  .fa-trash,
+  .fa-thumbs-down,
+  .fa-thumbs-up {
+    font-size: 1.2rem;
+  }
+
+  .commentsList--comment-input {
+    padding: 15px;
+    font-size: 1.2rem;
+    letter-spacing: 1.6px;
+    line-height: 2rem;
+  }
+
+  .commentsList--comment-trashBtn,
+  .commentsList--comment-submitBtn {
+    padding: 15px;
+    font-size: 1.1rem;
+    letter-spacing: 1.5px;
+  }
+
+  .articlesList--article-info,
+.singleArticle--info {
+  font-size: 1.1rem;
+  margin: 1.1rem 0;
+  letter-spacing: 1.5px;
+}
+
+  .footer--title {
+    margin: 1rem 0;
+    font-size: 1rem;
+    letter-spacing: 1.3px;
+  }
+  
 }
 
 

@@ -38,10 +38,8 @@ class Comments extends Component {
         })
     }
 
-    handleDeleteClick = (clickEvent) => {
-        clickEvent.preventDefault();
-        let deletedCommentId = clickEvent.target.id;
-        this.removeComment(deletedCommentId)
+    handleDeleteClick = (comment_id) => {
+        this.removeComment(comment_id)
     }
 
     addComment = () => {
@@ -52,9 +50,8 @@ class Comments extends Component {
         api.postComment(this.props.article_id, commentObj)
         .then(({ comment }) => {
             let formattedComment = utils.formatDates([comment]);
-            let commentCount = formattedComment.length;
             this.setState((currentState) => {
-                return {comments: [ formattedComment[0], ...currentState.comments], commentInput: '', commentCount }
+                return {comments: [ formattedComment[0], ...currentState.comments], commentInput: ''}
             })
         })
     }
@@ -81,7 +78,9 @@ class Comments extends Component {
                     {comments.map((comment) => {
                         return (
                             <div className="commentsList--comment" key={comment.comment_id}>
-                            <CommentCard comment={comment} user={this.props.user} handleDeleteClick={this.handleDeleteClick}/>
+                            <CommentCard comment={comment} user={this.props.user} handleDeleteClick={((clickEvent)=>{ 
+                                clickEvent.preventDefault();
+                                return this.handleDeleteClick(comment.comment_id)})}/>
                             </div>
                         )
                     })}

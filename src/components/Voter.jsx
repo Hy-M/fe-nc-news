@@ -48,7 +48,7 @@ class Voter extends Component {
                     clickEvent.preventDefault();
                     this.handleVoteClick(-1)
                 })}><i className="far fa-thumbs-down"></i></button>
-                { btnHasBeenClicked && err && <p className="voter--errorMsg">Sorry, votes cannot be added right now.</p>}    
+                { btnHasBeenClicked && err && <p className="voter--errorMsg">Sorry, votes can't be added right now.</p>}    
             </section>
         );
     }

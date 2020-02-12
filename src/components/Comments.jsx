@@ -40,7 +40,7 @@ class Comments extends Component {
 
     handleDeleteClick = (clickEvent) => {
         clickEvent.preventDefault();
-        let deletedCommentId = clickEvent.target.parentElement.id;
+        let deletedCommentId = clickEvent.target.id;
         this.removeComment(deletedCommentId)
     }
 

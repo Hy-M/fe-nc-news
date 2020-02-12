@@ -140,7 +140,6 @@ body {
 
 .voter--btn {
   background-color:var(--light-grey-color);
-  outline: none;
   border: none;
   margin: 0 0.5rem;
   padding: 8px;
@@ -207,7 +206,6 @@ body {
 .commentsList--comment-trashBtn,
 .commentsList--comment-submitBtn {
   background-color:var(--nc-color);
-  outline: none;
   border: none;
   padding: 8px;
   border-radius: 10px;

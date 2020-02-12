@@ -3,19 +3,28 @@ import * as api from '../utils/api';
 import * as utils from '../utils/utils';
 import Loader from './Loader';
 import { Link } from '@reach/router';
+import Err from './Err';
 
 class ArticlesList extends Component {
     state = {
         articles: [],
         isLoading: true,
-        sort_by: ''
+        sort_by: '',
+        err: false,
+        errMsg: '',
+        errStatus: 0
     }
 
     getArticles = (sort_by) => {
         api.fetchArticles(this.props.topic, sort_by)
         .then(({ articles }) => {
             let formattedArticles = utils.formatDates(articles);
-            this.setState({ articles: formattedArticles, isLoading: false });
+            this.setState({ articles: formattedArticles, isLoading: false, err: false });
+        })
+        .catch(({ response }) => {
+            let errStatus = response.status;
+            let errMsg = response.data.msg;
+            this.setState({err: true, isLoading: false, errStatus, errMsg });
         })
     }
 
@@ -35,9 +44,11 @@ class ArticlesList extends Component {
     }
     
     render() {
-        const { articles, isLoading } = this.state;
+        const { articles, isLoading, err, errMsg, errStatus} = this.state;
        if (isLoading) {
            return <Loader />
+       } else if (err) {
+            return <Err errMsg={errMsg} errStatus={errStatus}/>
        } else {
         return (
             <main className='articlesList'>

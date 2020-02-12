@@ -4,11 +4,15 @@ import * as api from '../utils/api';
 import Loader from './Loader';
 import Comments from './Comments';
 import Voter from './Voter';
+import Err from './Err';
 
 class SingleArticle extends Component {
     state = {
         article: {},
-        isLoading: true
+        isLoading: true,
+        err: false,
+        errMsg: '',
+        errStatus: 0
     }
 
     componentDidMount() {
@@ -19,14 +23,21 @@ class SingleArticle extends Component {
         api.fetchSingleArticle(this.props.article_id) 
         .then(({ article }) => {
             let formattedArticles = utils.formatDates([article]);
-            this.setState({ article: formattedArticles[0], isLoading: false })
+            this.setState({ article: formattedArticles[0], isLoading: false, err: false })
+        })
+        .catch(({ response }) => {
+            let errStatus = response.status;
+            let errMsg = response.data.msg;
+            this.setState({err: true, isLoading: false, errStatus, errMsg });
         })
     }
     
     render() {
-        const { article, isLoading } = this.state;
+        const { article, isLoading, err, errMsg, errStatus } = this.state;
         if (isLoading) {
             return <Loader />
+        } else if (err) {
+            return <Err errMsg={errMsg} errStatus={errStatus}/>
         } else {
             return (
                 <main>

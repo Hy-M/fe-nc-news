@@ -56,3 +56,11 @@ exports.patchVotes = (endpoint, id, inc_votes) => {
         return data;
     })
 }
+
+exports.fetchHTTPCat = (status) => {
+    return axios
+    .get(`https://cors-anywhere.herokuapp.com/https://http.cat/${status}.jpg`)
+    .then(({ headers }) => {
+        return headers;
+    })
+}

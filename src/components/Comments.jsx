@@ -9,7 +9,7 @@ class Comments extends Component {
         comments: [],
         commentCount: 0,
         isLoading: true,
-        commentInput: '',
+        commentInput: ''
     }
 
     getAllComments = () => {
@@ -62,13 +62,13 @@ class Comments extends Component {
     }
 
     render() {
-        const { comments, isLoading, commentCount } = this.state;
+        const { comments, isLoading, commentCount} = this.state;
         if (isLoading) {
             return <Loader />
         } else {
             return (
                 <section className="commentsList">
-                    <p className="commentsList--title">COmments: {commentCount}</p>
+                    <p className="commentsList--title">Comments: {commentCount}</p>
                     {comments.map((comment) => {
                         return (
                             <div className="commentsList--comment" key={comment.comment_id}>

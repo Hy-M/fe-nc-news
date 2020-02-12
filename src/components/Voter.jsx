@@ -6,6 +6,7 @@ class Voter extends Component {
         optimisticVote: this.props.votes,
         userVote: '',
         btnHasBeenClicked: false,
+        err: false
     }
 
     handleVoteClick = (clickEvent) => {
@@ -28,9 +29,13 @@ class Voter extends Component {
         }
 
         if (this.props.article_id) {
-            api.patchVotes('articles', this.props.article_id, inc_votes);
+            api.patchVotes('articles', this.props.article_id, inc_votes).catch(() => {
+                this.setState({ err: true })
+            })
         } else {
-            api.patchVotes('comments', this.props.comment_id, inc_votes);
+            api.patchVotes('comments', this.props.comment_id, inc_votes).catch(() => {
+                this.setState({ err: true })
+            })
         }
         
         this.setState((currentState) => {
@@ -39,12 +44,13 @@ class Voter extends Component {
     }
 
     render() {
-        const { optimisticVote, btnHasBeenClicked } = this.state;
+        const { optimisticVote, btnHasBeenClicked, err } = this.state;
         return (
             <section className="voter">
                 <p className="voter--title">Votes: {optimisticVote}</p>
                 <button className={btnHasBeenClicked ? "voter--btn-inactive voter--btn" : "voter--btn"} id="upvote" onClick={this.handleVoteClick}><i className="far fa-thumbs-up"></i></button>
                 <button className={btnHasBeenClicked ? "voter--btn-inactive voter--btn" : "voter--btn"} id="downvote" onClick={this.handleVoteClick}><i className="far fa-thumbs-down"></i></button>
+                { btnHasBeenClicked && err && <p className="voter--errorMsg">Sorry, votes cannot be added right now.</p>}    
             </section>
         );
     }

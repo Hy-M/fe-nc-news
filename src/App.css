@@ -219,7 +219,8 @@ body {
 }
 
 .articlesList--article-info,
-.singleArticle--info {
+.singleArticle--info,
+.voter--errorMsg  {
   font-size: 0.9rem;
   margin: 0.7rem 0;
   color: var(--dark-grey-color);
@@ -469,6 +470,7 @@ body {
 
   .error--img {
     width: 800px;
+    border-radius: 10px;
   }
   
   .error--msg {

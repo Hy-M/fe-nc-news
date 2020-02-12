@@ -47,9 +47,6 @@ exports.postComment = (article_id, commentObj) => {
 exports.deleteComment = (comment_id) => {
     return axios
     .delete(`https://nc-news-hym.herokuapp.com/api/comments/${comment_id}`)
-    .then(() => {
-        console.log("deleted");
-    })
 }
 
 exports.patchVotes = (endpoint, id, inc_votes) => {

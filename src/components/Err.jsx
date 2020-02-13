@@ -16,9 +16,7 @@ class Err extends Component {
             api.fetchHTTPCat(errStatus)
             .then((headers) => {
                 let catURL = headers['x-final-url'];
-                this.setState({ catURL }, () => {
-                    console.log(this.state)
-                })
+                this.setState({ catURL })
             })
         }
     }

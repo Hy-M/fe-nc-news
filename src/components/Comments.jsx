@@ -9,7 +9,9 @@ class Comments extends Component {
         comments: [],
         commentCount: 0,
         isLoading: true,
-        commentInput: ''
+        commentInput: '',
+        postHasBeenClicked: false,
+        deleteHasBeenClicked: false
     }
 
     getAllComments = () => {
@@ -17,7 +19,7 @@ class Comments extends Component {
         .then(({ comments }) => {
             let formattedArticles = utils.formatDates(comments);
             let commentCount = formattedArticles.length;
-            this.setState({ comments: formattedArticles, isLoading: false, commentCount });
+            this.setState({ comments: formattedArticles, isLoading: false, commentCount, deleteHasBeenClicked: false });
         })
     }
 
@@ -28,7 +30,9 @@ class Comments extends Component {
 
     handleCommentSubmit = (submitEvent) => {
         submitEvent.preventDefault();
-        this.addComment();
+        this.setState({ postHasBeenClicked: true }, () => {
+            this.addComment();
+        })
     }
 
     removeComment = (comment_id) => {
@@ -39,7 +43,9 @@ class Comments extends Component {
     }
 
     handleDeleteClick = (comment_id) => {
-        this.removeComment(comment_id)
+        this.setState({ deleteHasBeenClicked: true }, () => {
+            this.removeComment(comment_id)
+        })
     }
 
     addComment = () => {
@@ -51,7 +57,7 @@ class Comments extends Component {
         .then(({ comment }) => {
             let formattedComment = utils.formatDates([comment]);
             this.setState((currentState) => {
-                return {comments: [ formattedComment[0], ...currentState.comments], commentInput: ''}
+                return {comments: [ formattedComment[0], ...currentState.comments], commentInput: '', postHasBeenClicked: false}
             })
         })
     }
@@ -61,7 +67,7 @@ class Comments extends Component {
     }
 
     render() {
-        const { comments, isLoading, commentCount} = this.state;
+        const { comments, isLoading, commentCount, postHasBeenClicked, deleteHasBeenClicked} = this.state;
         if (isLoading) {
             return <Loader />
         } else {
@@ -73,14 +79,12 @@ class Comments extends Component {
                             <p className='commentsList--comment-title'>{this.props.user} said:</p>
                             <input className="commentsList--comment-input" type='text' placeholder='Type your comment here' required onChange={this.handleCommentChange} value={this.state.commentInput} />
                         </label>
-                        <button className="commentsList--comment-submitBtn">Post</button>
+                        {postHasBeenClicked ? <button className="commentsList--comment-submitBtn">Posting...</button> : <button className="commentsList--comment-submitBtn">Post</button>}
                     </form>
                     {comments.map((comment) => {
                         return (
                             <div className="commentsList--comment" key={comment.comment_id}>
-                            <CommentCard comment={comment} user={this.props.user} handleDeleteClick={((clickEvent)=>{ 
-                                clickEvent.preventDefault();
-                                return this.handleDeleteClick(comment.comment_id)})}/>
+                            <CommentCard comment={comment} user={this.props.user} deleteHasBeenClicked={deleteHasBeenClicked} handleDeleteClick={((clickEvent)=>{ this.handleDeleteClick(comment.comment_id)})}/>
                             </div>
                         )
                     })}

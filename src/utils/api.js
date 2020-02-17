@@ -64,3 +64,11 @@ exports.fetchHTTPCat = (status) => {
         return headers;
     })
 }
+
+exports.postUserForToken = (userObj) => {
+    return axios
+    .post(`https://nc-news-hym.herokuapp.com/api/login`, userObj)
+    .then(({ data }) => {
+        return data;
+    })
+}

@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import ArticlesList from './components/ArticlesList';
 import SingleArticle from './components/SingleArticle';
 import Err from './components/Err';
+import Login from './components/Login';
 
 class App extends Component {
   state = {
@@ -19,6 +20,7 @@ class App extends Component {
        <Title user={this.state.user} /> 
        <Nav />
        <Router>
+         <Login path='/login' />
          <ArticlesList path='/'/>
          <ArticlesList path='/:topic'/>
          <SingleArticle path='/articles/:article_id' user={this.state.user}/>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import * as api from '../utils/api';
-import * as utils from '../utils/utils';
+// import * as utils from '../utils/utils';
 import Loader from './Loader';
 import CommentCard from './CommentCard';
 
@@ -14,10 +14,20 @@ class Comments extends Component {
         deleteHasBeenClicked: false
     }
 
+    formatDates = (articles) => {
+        return articles.map((article) => {
+            let articleCopy = { ...article };
+            let date = new Date(articleCopy.created_at);
+            let formattedDate = date.toDateString();
+            articleCopy.created_at = formattedDate;
+            return articleCopy;
+        });
+    }
+
     getAllComments = () => {
         api.fetchAllComments(this.props.article_id)
         .then(({ comments }) => {
-            let formattedArticles = utils.formatDates(comments);
+            let formattedArticles = this.formatDates(comments);
             let commentCount = formattedArticles.length;
             this.setState({ comments: formattedArticles, isLoading: false, commentCount, deleteHasBeenClicked: false });
         })
@@ -55,7 +65,7 @@ class Comments extends Component {
         };
         api.postComment(this.props.article_id, commentObj)
         .then(({ comment }) => {
-            let formattedComment = utils.formatDates([comment]);
+            let formattedComment = this.formatDates([comment]);
             this.setState((currentState) => {
                 return {comments: [ formattedComment[0], ...currentState.comments], commentInput: '', postHasBeenClicked: false}
             })

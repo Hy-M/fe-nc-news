@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import * as api from '../utils/api';
-import * as utils from '../utils/utils';
+// import * as utils from '../utils/utils';
 import Loader from './Loader';
 import Err from './Err';
 import ArticleCard from './ArticleCard';
@@ -15,10 +15,20 @@ class ArticlesList extends Component {
         errStatus: 0
     }
 
+    formatDates = (articles) => {
+        return articles.map((article) => {
+            let articleCopy = { ...article };
+            let date = new Date(articleCopy.created_at);
+            let formattedDate = date.toDateString();
+            articleCopy.created_at = formattedDate;
+            return articleCopy;
+        });
+    }
+
     getArticles = (sort_by) => {
         api.fetchArticles(this.props.topic, sort_by)
         .then(({ articles }) => {
-            let formattedArticles = utils.formatDates(articles);
+            let formattedArticles = this.formatDates(articles);
             this.setState({ articles: formattedArticles, isLoading: false, err: false });
         })
         .catch(({ response }) => {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import * as utils from '../utils/utils';
+// import * as utils from '../utils/utils';
 import * as api from '../utils/api';
 import Loader from './Loader';
 import Comments from './Comments';
@@ -19,10 +19,19 @@ class SingleArticle extends Component {
         this.getSingleArticle();
     }
 
+    formatDates = (articles) => {
+        return articles.map((article) => {
+            let articleCopy = { ...article };
+            let date = new Date(articleCopy.created_at);
+            let formattedDate = date.toDateString();
+            articleCopy.created_at = formattedDate;
+            return articleCopy;
+        });
+    }
     getSingleArticle = () => {
         api.fetchSingleArticle(this.props.article_id) 
         .then(({ article }) => {
-            let formattedArticles = utils.formatDates([article]);
+            let formattedArticles = this.formatDates([article]);
             this.setState({ article: formattedArticles[0], isLoading: false, err: false })
         })
         .catch(({ response }) => {

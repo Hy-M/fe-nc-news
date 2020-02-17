@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import * as utils from '../utils/utils';
 import * as api from '../utils/api';
 import Loader from './Loader';
 import Comments from './Comments';

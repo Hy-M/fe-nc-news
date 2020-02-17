@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import * as api from '../utils/api';
-// import * as utils from '../utils/utils';
 import Loader from './Loader';
 import Err from './Err';
 import ArticleCard from './ArticleCard';

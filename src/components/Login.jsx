@@ -6,8 +6,6 @@ class Login extends Component {
         user: '',
         token: ''
     }
-    //create the token by post request w username
-    //send token in every request to back-end on authorization header
 
     handleLoginChange = (changeEvent) => {
         let userInput = changeEvent.target.value;
